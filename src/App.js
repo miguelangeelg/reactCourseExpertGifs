@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useState } from 'react';
+import { Addcategory } from './components/Addcategory';
+import { GifGrid } from './components/GifGrid';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+    const [categories, setCategories] = useState([ ])
+
+    return (
+        <Fragment>
+            <h2>Gift Expert</h2>
+            <Addcategory setCategories={setCategories} categories={categories}/>
+            <hr />
+
+                {
+                    categories.map((category) => {
+                       return  <GifGrid key={category} category={category} />
+                    })
+                }
+        </Fragment>
+    )
 }
 
 export default App;
